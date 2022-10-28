@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  clearFormReducer,
   formDataReducer,
   showModalReducer,
 } from "../reducers/newBillFormReducers";
 
-const initialState = {
+export const initialState = {
   showModal: false,
   formData: { description: "", category: "", date: "", amount: 0 },
 };
@@ -15,9 +16,11 @@ const newBillFormSlice = createSlice({
   reducers: {
     setShowModal: showModalReducer,
     setFormData: formDataReducer,
+    clearFormData: clearFormReducer,
   },
 });
 
-export const { setShowModal, setFormData } = newBillFormSlice.actions;
+export const { setShowModal, setFormData, clearFormData } =
+  newBillFormSlice.actions;
 
 export default newBillFormSlice.reducer;
