@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,9 +10,20 @@ import { useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 
 export default function BillsTable() {
-  const { bills } = useSelector((store) => store.bills);
+  const { bills, categoryFilter } = useSelector((store) => store.bills);
+  const [showBills, setShowBills] = useState(bills);
 
-  if (bills.length == 0) {
+  useEffect(() => {
+    console.log(categoryFilter);
+    if (categoryFilter === "All") {
+      setShowBills(bills);
+      return;
+    }
+
+    setShowBills(bills.filter((e) => e.category === categoryFilter));
+  }, [categoryFilter, bills]);
+
+  if (bills.length === 0) {
     return (
       <Typography variant="h6" align="center">
         No bills available
@@ -34,7 +45,7 @@ export default function BillsTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {bills.map((row) => (
+            {showBills.map((row) => (
               <TableRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

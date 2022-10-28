@@ -5,5 +5,11 @@ export const addBillReducer = (state, { payload }) => {
   newBill.date = getDateDMY(newBill.date);
   newBill.id = state.bills.length + 1;
 
+  state.categories[newBill.category] = 1;
+
   state.bills.push(newBill);
+};
+
+export const categoryFilterReducer = (state, { payload }) => {
+  state.categoryFilter = payload;
 };

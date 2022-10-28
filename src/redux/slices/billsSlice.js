@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addBillReducer } from "../reducers/billsReducers";
+import {
+  addBillReducer,
+  categoryFilterReducer,
+} from "../reducers/billsReducers";
 
 const initialState = {
   bills: [],
+  categoryFilter: "All",
+  categories: {},
 };
 
 const billsSlice = createSlice({
@@ -10,9 +15,10 @@ const billsSlice = createSlice({
   initialState,
   reducers: {
     addBill: addBillReducer,
+    setCategoryFilter: categoryFilterReducer,
   },
 });
 
-export const { addBill } = billsSlice.actions;
+export const { addBill, setCategoryFilter } = billsSlice.actions;
 
 export default billsSlice.reducer;
