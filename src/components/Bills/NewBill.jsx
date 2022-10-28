@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { setFormData, setShowModal } from "../../redux/slices/newBillFormSlice";
+import {
+  clearFormData,
+  setFormData,
+  setShowModal,
+} from "../../redux/slices/newBillFormSlice";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
-import getDateDMY from "../../utils/getDateDMY";
+import { addBill } from "../../redux/slices/billsSlice";
 
 const style = {
   position: "absolute",
@@ -25,11 +29,15 @@ function NewBill() {
   const { showModal, formData } = useSelector((store) => store.newBillForm);
   const { description, category, date, amount } = formData;
 
-  const handleClose = () => dispatch(setShowModal(false));
+  const handleClose = () => {
+    dispatch(setShowModal(false));
+    dispatch(clearFormData());
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(formData);
+    dispatch(addBill(formData));
+    handleClose();
   };
 
   return (
@@ -86,8 +94,15 @@ function NewBill() {
                 required
                 value={amount}
                 onChange={(e) => {
-                  if (isNaN(e.target.value)) return;
-                  dispatch(setFormData({ amount: e.target.valueAsNumber }));
+                  let val = !isNaN(e.target.valueAsNumber)
+                    ? e.target.valueAsNumber
+                    : 0;
+
+                  dispatch(
+                    setFormData({
+                      amount: val,
+                    })
+                  );
                 }}
               />
             </div>
