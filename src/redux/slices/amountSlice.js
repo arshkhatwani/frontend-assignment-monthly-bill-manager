@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { amountReducer } from "../reducers/amountReducers";
 
+const getAmount = () => {
+  const amt = parseInt(prompt("Enter amount in number (default: 50000)"));
+  if (isNaN(amt)) return 50000;
+  return amt;
+};
+
 const initialState = {
-  amount: parseInt(prompt("Enter amount in number")),
+  amount: getAmount(),
 };
 
 const amountSlice = createSlice({
