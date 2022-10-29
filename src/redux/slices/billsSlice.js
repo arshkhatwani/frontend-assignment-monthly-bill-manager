@@ -3,9 +3,10 @@ import {
   addBillReducer,
   categoryFilterReducer,
   deleteBillReducer,
+  editBillReducer,
 } from "../reducers/billsReducers";
 
-const initialState = {
+export const initialState = {
   bills: [],
   categoryFilter: "All",
   categories: {},
@@ -18,9 +19,11 @@ const billsSlice = createSlice({
     addBill: addBillReducer,
     setCategoryFilter: categoryFilterReducer,
     deleteBill: deleteBillReducer,
+    editBill: editBillReducer,
   },
 });
 
-export const { addBill, setCategoryFilter, deleteBill } = billsSlice.actions;
+export const { addBill, setCategoryFilter, deleteBill, editBill } =
+  billsSlice.actions;
 
 export default billsSlice.reducer;

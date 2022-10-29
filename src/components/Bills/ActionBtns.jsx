@@ -4,10 +4,17 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useDispatch } from "react-redux";
 import { deleteBill } from "../../redux/slices/billsSlice";
+import { setEditBillId, setShowModal } from "../../redux/slices/editBillSlice";
 
 function ActionBtns(props) {
   const { billId } = props;
   const dispatch = useDispatch();
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    dispatch(setEditBillId(billId));
+    dispatch(setShowModal(true));
+  };
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -16,7 +23,7 @@ function ActionBtns(props) {
 
   return (
     <div>
-      <IconButton aria-label="edit">
+      <IconButton aria-label="edit" onClick={handleEdit}>
         <EditIcon />
       </IconButton>
 

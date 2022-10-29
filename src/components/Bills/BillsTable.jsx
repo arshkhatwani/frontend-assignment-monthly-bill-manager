@@ -15,7 +15,6 @@ export default function BillsTable() {
   const [showBills, setShowBills] = useState(bills);
 
   useEffect(() => {
-    console.log(categoryFilter);
     if (categoryFilter === "All") {
       setShowBills(bills);
       return;
