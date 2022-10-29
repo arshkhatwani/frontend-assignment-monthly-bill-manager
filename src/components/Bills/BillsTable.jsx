@@ -28,6 +28,8 @@ export default function BillsTable() {
     }
 
     setShowBills(bills.filter((e) => e.category === categoryFilter));
+
+    // eslint-disable-next-line
   }, [categoryFilter, bills, amount]);
 
   if (bills.length === 0) {
@@ -57,7 +59,7 @@ export default function BillsTable() {
               <TableRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                className={highlightIds.includes(row.id) && "bg-yellow-200"}
+                className={highlightIds.includes(row.id) ? "bg-yellow-200" : ""}
               >
                 <TableCell component="th" scope="row">
                   {row.id}
