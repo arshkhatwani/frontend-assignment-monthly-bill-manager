@@ -1,10 +1,12 @@
 # Frontend Coding Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+This command needs to be run first so that all the dependencies are installed successfully.
 
 ### `npm start`
 
