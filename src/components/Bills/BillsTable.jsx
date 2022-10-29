@@ -28,7 +28,7 @@ export default function BillsTable() {
     }
 
     setShowBills(bills.filter((e) => e.category === categoryFilter));
-  }, [categoryFilter, bills]);
+  }, [categoryFilter, bills, amount]);
 
   if (bills.length === 0) {
     return (

@@ -3,6 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import AmountComp from "../Amount/AmountComp";
 
 export default function Navbar() {
   return (
@@ -13,9 +14,7 @@ export default function Navbar() {
             Monthly Budget Manager
           </Typography>
 
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Monthly Budget : 50000
-          </Typography>
+          <AmountComp />
         </Toolbar>
       </AppBar>
     </Box>
