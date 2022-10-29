@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
 import { Typography } from "@mui/material";
+import ActionBtns from "./ActionBtns";
 
 export default function BillsTable() {
   const { bills, categoryFilter } = useSelector((store) => store.bills);
@@ -42,6 +43,7 @@ export default function BillsTable() {
               <TableCell align="right">Category</TableCell>
               <TableCell align="right">Amount</TableCell>
               <TableCell align="right">Date</TableCell>
+              <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -57,6 +59,9 @@ export default function BillsTable() {
                 <TableCell align="right">{row.category}</TableCell>
                 <TableCell align="right">{row.amount}</TableCell>
                 <TableCell align="right">{row.date}</TableCell>
+                <TableCell align="right">
+                  <ActionBtns billId={row.id} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -6,13 +6,15 @@ import { setCategoryFilter } from "../../redux/slices/billsSlice";
 function CategoryFilter() {
   const dispatch = useDispatch();
 
-  const { categoryFilter, categories } = useSelector((store) => store.bills);
+  const { categoryFilter, categories, bills } = useSelector(
+    (store) => store.bills
+  );
 
   const handleChange = (e) => {
     dispatch(setCategoryFilter(e.target.value));
   };
 
-  if (Object.keys(categories).length === 0) return <></>;
+  if (bills.length === 0) return <></>;
 
   return (
     <div className="flex flex-row items-center justify-center">
