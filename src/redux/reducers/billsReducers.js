@@ -65,7 +65,11 @@ export const highlightReducer = (state, { payload }) => {
 
   let curAmount = 0;
   for (var i = 0; i < newBills.length; i++) {
-    if (curAmount + newBills[i].amount > amount) break;
+    if (curAmount + newBills[i].amount > amount && highlightIds.length != 0)
+      break;
+    if (highlightIds.length === 1) break;
+
+    if (curAmount + newBills[i].amount > amount) continue;
 
     curAmount += newBills[i].amount;
     highlightIds.push(newBills[i].id);
