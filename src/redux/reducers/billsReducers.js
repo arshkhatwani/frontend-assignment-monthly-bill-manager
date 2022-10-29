@@ -45,3 +45,31 @@ export const editBillReducer = (state, { payload }) => {
 
   state.categoryFilter = initialState.categoryFilter;
 };
+
+const compare = (a, b) => {
+  if (a.amount < b.amount) {
+    return 1;
+  }
+  if (a.amount > b.amount) {
+    return -1;
+  }
+  return 0;
+};
+
+export const highlightReducer = (state, { payload }) => {
+  const { amount } = payload;
+  let newBills = [...state.bills];
+  let highlightIds = [];
+
+  newBills.sort(compare);
+
+  let curAmount = 0;
+  for (var i = 0; i < newBills.length; i++) {
+    if (curAmount + newBills[i].amount > amount) break;
+
+    curAmount += newBills[i].amount;
+    highlightIds.push(newBills[i].id);
+  }
+
+  state.highlightIds = highlightIds;
+};

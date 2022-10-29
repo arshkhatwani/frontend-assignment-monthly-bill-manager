@@ -6,15 +6,22 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 import ActionBtns from "./ActionBtns";
+import { getHightlightIds } from "../../redux/slices/billsSlice";
 
 export default function BillsTable() {
-  const { bills, categoryFilter } = useSelector((store) => store.bills);
+  const dispatch = useDispatch();
+  const { bills, categoryFilter, highlightIds } = useSelector(
+    (store) => store.bills
+  );
+  const { amount } = useSelector((store) => store.amount);
   const [showBills, setShowBills] = useState(bills);
 
   useEffect(() => {
+    dispatch(getHightlightIds({ amount }));
+
     if (categoryFilter === "All") {
       setShowBills(bills);
       return;
@@ -50,6 +57,7 @@ export default function BillsTable() {
               <TableRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                className={highlightIds.includes(row.id) && "bg-yellow-200"}
               >
                 <TableCell component="th" scope="row">
                   {row.id}
