@@ -4,6 +4,7 @@ import BillsTable from "./components/Bills/BillsTable";
 import EditBill from "./components/Bills/EditBill";
 import NewBill from "./components/Bills/NewBill";
 import Navbar from "./components/Navbar/Navbar";
+import TimeSeriesChart from "./components/TimeSeriesChart/TimeSeriesChart";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <BillsBar />
 
       <BillsTable />
+
+      <TimeSeriesChart />
 
       <NewBill />
 

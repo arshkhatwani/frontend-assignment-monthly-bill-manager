@@ -41,7 +41,7 @@ export default function BillsTable() {
   }
 
   return (
-    <div className="mx-auto w-3/5">
+    <div className="mx-auto w-3/5 mb-8">
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
